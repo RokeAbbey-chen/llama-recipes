@@ -1,6 +1,11 @@
 # Copyright (c) Meta Platforms, Inc. and affiliates.
 # This software may be used and distributed according to the terms of the Llama 2 Community License Agreement.
 
+import sys
+
+import torch.distributed
+print(sys.path)
+sys.path.append("/workspace/llama-recipes/src")
 from collections import Counter
 import os
 
@@ -87,6 +92,7 @@ def main(**kwargs):
         rank = int(os.environ["RANK"])
         world_size = int(os.environ["WORLD_SIZE"])
 
+    print("torch.distributed.is_initialized():", torch.distributed.is_initialized())
     if torch.distributed.is_initialized():
         if is_xpu_available():
             torch.xpu.set_device(local_rank)
@@ -117,6 +123,9 @@ def main(**kwargs):
 
     # Load the pre-trained model and setup its configuration
     use_cache = False if train_config.enable_fsdp else None
+    print("train_config.quantization:", train_config.quantization, 
+          ", train_config.enable_fsdp:", train_config.enable_fsdp,
+          ", train_config.use_fp16:", train_config.use_fp16)
     model = LlamaForCausalLM.from_pretrained(
         train_config.model_name,
         quantization_config=bnb_config,

@@ -7,9 +7,33 @@
 
 from datasets import load_dataset
 from pathlib import Path
+import importlib.util
+import sys
 
 from torch.utils.data import Dataset
+def importmod(basepath:str, name:str):
 
+    # 指定模块路径
+    # module_name = "your_package"
+    # module_path = "/path/to/your/package/your_package.py"
+    module_name = name
+    module_path = basepath
+
+    # 创建模块规范
+    spec = importlib.util.spec_from_file_location(module_name, module_path)
+
+    print(module_path, module_name, spec)
+    # 创建模块
+    module = importlib.util.module_from_spec(spec)
+
+    # 执行模块（导入模块）
+    spec.loader.exec_module(module)
+
+    # 现在可以使用该模块
+    # module.some_function()
+
+# datasets = importmod("/usr/local/lib/python3.10/dist-packages/datasets/__init__.py", "datasets")
+# load_dataset = datasets.load_dataset
 
 class grammar(Dataset):
     def __init__(

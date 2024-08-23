@@ -10,10 +10,13 @@ import gradio as gr
 
 import torch
 
+sys.path.append("/workspace/llama-recipes/src/")
 from accelerate.utils import is_xpu_available
 from llama_recipes.inference.model_utils import load_model, load_peft_model
+# from src.llama_recipes.inference.model_utils import load_model, load_peft_model
 
 from llama_recipes.inference.safety_utils import AgentType, get_safety_checker
+# from src.llama_recipes.inference.safety_utils import AgentType, get_safety_checker
 from transformers import AutoTokenizer
 
 
@@ -99,6 +102,7 @@ def main(
             batch = {k: v.to("cuda") for k, v in batch.items()}
 
         start = time.perf_counter()
+        print("start: ", start, " ms")
         with torch.no_grad():
             outputs = model.generate(
                 **batch,
