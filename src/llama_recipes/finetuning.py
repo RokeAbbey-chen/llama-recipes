@@ -132,6 +132,7 @@ def main(**kwargs):
         use_cache=use_cache,
         attn_implementation="sdpa" if train_config.use_fast_kernels else None,
         device_map="auto" if train_config.quantization and not train_config.enable_fsdp else None,
+        # device_map='cpu',
         torch_dtype=torch.float16 if train_config.use_fp16 else torch.bfloat16,
     )
 
@@ -203,6 +204,7 @@ def main(**kwargs):
         if is_xpu_available():
             model.to("xpu:0")
         elif torch.cuda.is_available():
+            # print("come in 'cuda.is_availabel()'")
             model.to("cuda")
 
     dataset_config = generate_dataset_config(train_config, kwargs)

@@ -148,8 +148,12 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
                                 batch[key] = batch[key].to('xpu:0')
                             else:
                                 batch[key] = batch[key].to('cuda:0')
+                                pass
+
+                
                     with autocast():
                         loss = model(**batch).loss
+                    # loss = model(**batch).loss
                     loss = loss / gradient_accumulation_steps
                     if train_config.save_metrics:
                         train_step_loss.append(loss.detach().float().item())
