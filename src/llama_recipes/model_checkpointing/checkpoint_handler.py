@@ -271,6 +271,9 @@ def save_peft_checkpoint(model, model_path):
     """save_pretrained peft model"""
 
     options = StateDictOptions(full_state_dict=True, cpu_offload=True)
+    # a = list(model.named_modules())
+    # b = [(k, v) for k, v in a if 'k_proj' in k]
+    # c = b[0][1].state_dict()
 
     state_dict = get_model_state_dict(model, options=options)
     model.save_pretrained(model_path, state_dict=state_dict)

@@ -116,7 +116,8 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
     best_val_loss = float("inf")
     total_train_steps = 0
     max_steps_reached = False  # Flag to indicate max training steps reached
-    # Start the training loop
+    # Start the training loop=
+    # save_peft_checkpoint(model, train_config.output_dir)
     for epoch in range(train_config.num_epochs):
         # stop when the maximum number of training steps is reached
         if max_steps_reached:
