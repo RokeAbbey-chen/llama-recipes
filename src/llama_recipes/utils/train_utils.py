@@ -137,7 +137,7 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
                         if not train_config.enable_fsdp or local_rank==0:
                             print("max training steps reached, stopping training, total train steps finished: ", total_train_steps-1)
 
-                        save_peft_checkpoint(model, train_config.output_dir)
+                        # save_peft_checkpoint(model, train_config.output_dir)
                         break
                     for key in batch.keys():
                         if train_config.enable_fsdp:
@@ -234,6 +234,7 @@ def train(model, train_dataloader,eval_dataloader, tokenizer, optimizer, lr_sche
                 val_step_perplexity.extend(temp_step_perplexity)
 
             checkpoint_start_time = time.perf_counter()
+            print("save_model:", train_config.save_model, ", eloss:", eval_epoch_loss, ", beloss:", best_val_loss)
             if train_config.save_model and eval_epoch_loss < best_val_loss:
                 if train_config.enable_fsdp:
                     dist.barrier()

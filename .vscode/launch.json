@@ -22,7 +22,8 @@
                 "--batch_size_training=1",
                 "--context_length=1024",
                 "--output_dir=output/model2",
-                "--max_train_step=1"
+                "--max_train_step=1",
+                "--from_peft_checkpoint=/data/coding/llama-recipes/output/model0"
             ]
         }
     ]
