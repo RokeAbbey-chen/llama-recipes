@@ -1,0 +1,1 @@
+torchrun --nnodes 1 --nproc_per_node=2 ./src/llama_recipes/finetuning.py --use_peft --peft_method=lora --quantization=4bit --enable_fsdp  --model_name=meta-llama/Meta-Llama-3.1-8B --samsum_dataset.trust_remote_code=True  --batch_size_training=4 --context_length=1024 --output_dir=output/model0 --max_train_step 3000
