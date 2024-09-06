@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "finetuning",
+            "name": "finetuning-4bit-mgpu",
             "type": "debugpy",
             "request": "launch",
             "program": "./src/llama_recipes/finetuning.py",
@@ -16,14 +16,38 @@
                 // "--quantization=8bit",
                 "--quantization=4bit",
                 "--model_name=meta-llama/Meta-Llama-3.1-8B",
-                "--samsum_dataset.trust_remote_code=True",
+                "--dataset=hlm_chat_dataset",
+                // "--samsum_dataset.trust_remote_code=True",
                 // "--use_fp16",
                 "--enable_fsdp",
                 "--batch_size_training=1",
                 "--context_length=1024",
-                "--output_dir=output/model2",
-                "--max_train_step=1",
-                "--from_peft_checkpoint=/data/coding/llama-recipes/output/model0"
+                "--output_dir=output/hlm",
+                // "--max_train_step=1",
+                // "--from_peft_checkpoint=/data/coding/llama-recipes/output/model0"
+            ]
+        }, 
+        {
+            "name": "finetuning-8bit-sgpu",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "./src/llama_recipes/finetuning.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--use_peft",
+                "--peft_method=lora",
+                // "--quantization=8bit",
+                "--quantization=8bit",
+                "--model_name=meta-llama/Meta-Llama-3.1-8B",
+                "--dataset=hlm_chat_dataset",
+                // "--samsum_dataset.trust_remote_code=True",
+                "--use_fp16",
+                // "--enable_fsdp",
+                "--batch_size_training=1",
+                "--context_length=1024",
+                "--output_dir=output/hlm",
+                // "--max_train_step=1",
+                // "--from_peft_checkpoint=/data/coding/llama-recipes/output/model0"
             ]
         }
     ]

@@ -2,6 +2,7 @@
 import json
 from datasets import Dataset, DatasetDict
 from transformers import AutoTokenizer
+from pprint import pprint
 
 def get_data_from_path(path:str):
     # path = "datas/hlm/data.json"
@@ -63,7 +64,7 @@ def get_hlm(dataset_config, tokenizer, split):
         'validation': eval_dataset
     })
 
-def main():
+def main0():
     tokenizer_name = "meta-llama/Meta-Llama-3.1-8B"
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
     path = "datas/hlm/data.json"
@@ -72,9 +73,16 @@ def main():
     print(tokenizer("helloworld"))
     print(tokenizer.encode('helloworld'))
 
+    print(tokenizer("你好"))
+    print(tokenizer.encode('啥比'))
     data = get_tokenized_dataset_from_path(tokenizer, path)
     # print(data['input_ids'])
 
+def main1():
+    path = "datas/hlm/data.json"
+    ds = get_data_from_path(path)
+    for i in range(100):
+        pprint(ds[i])
 
 if '__main__' == __name__:
-    main()
+    main1()

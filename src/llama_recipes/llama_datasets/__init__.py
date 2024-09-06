@@ -21,5 +21,5 @@ DATASET_PREPROC = {
     "samsum_dataset": get_samsum_dataset,
     "custom_dataset": get_custom_dataset,
     "llamaguard_toxicchat_dataset": get_llamaguard_toxicchat_dataset,
-    "hlm_chat_datset": get_hlm,
+    "hlm_chat_dataset": get_hlm,
 }
