@@ -13,13 +13,17 @@
             "args": [
                 "--use_peft",
                 "--peft_method=lora",
-                "--quantization=8bit",
+                // "--quantization=8bit",
+                "--quantization=4bit",
                 "--model_name=meta-llama/Meta-Llama-3.1-8B",
                 "--samsum_dataset.trust_remote_code=True",
-                "--use_fp16",
+                // "--use_fp16",
+                "--enable_fsdp",
                 "--batch_size_training=1",
                 "--context_length=1024",
-                "--output_dir=output"
+                "--output_dir=output/model2",
+                "--max_train_step=1",
+                "--from_peft_checkpoint=/data/coding/llama-recipes/output/model0"
             ]
         }
     ]
