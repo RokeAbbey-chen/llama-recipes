@@ -67,7 +67,7 @@ def get_hlm(dataset_config, tokenizer, split):
 def main0():
     tokenizer_name = "meta-llama/Meta-Llama-3.1-8B"
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
-    path = "datas/hlm/data.json"
+    path = "datas/hlm/data_train.json"
     print("bos_token:", tokenizer.bos_token)
     print("eos_token:", tokenizer.eos_token)
     print(tokenizer("helloworld"))
@@ -75,7 +75,11 @@ def main0():
 
     print(tokenizer("你好"))
     print(tokenizer.encode('啥比'))
+    # print(tokenizer.apply_chat_template({'role': "user", "content":"你好"}, tokenize=True,  add_generation_prompt=True))
     data = get_tokenized_dataset_from_path(tokenizer, path)
+    print(data[0]['input_ids'])
+    print(tokenizer.decode(data[0]['input_ids']))
+
     # print(data['input_ids'])
 
 def main1():
@@ -84,5 +88,9 @@ def main1():
     for i in range(100):
         pprint(ds[i])
 
+def main2():
+    path = "datas/hlm/data_train.json"
+    # get_hlm_with_split(N)
+
 if '__main__' == __name__:
-    main1()
+    main0()
