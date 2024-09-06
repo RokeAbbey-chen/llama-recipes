@@ -10,7 +10,8 @@ import gradio as gr
 
 import torch
 
-sys.path.append("/data/coding/llama-recipes/src/")
+# sys.path.append("/data/coding/llama-recipes/src/")
+sys.path.append("/workspace/llama-recipes/src/")
 from accelerate.utils import is_xpu_available
 from llama_recipes.inference.model_utils import load_model, load_peft_model
 # from src.llama_recipes.inference.model_utils import load_model, load_peft_model

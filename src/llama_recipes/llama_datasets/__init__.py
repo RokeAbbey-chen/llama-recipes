@@ -3,12 +3,15 @@
 
 from functools import partial
 import sys
-sys.path.append('/data/coding/llama-recipes')
+# sys.path.append('/data/coding/llama-recipes')
+sys.path.append('/workspace/llama-recipes/src/llama_recipes')
+sys.path.append('/workspace/llama-recipes/')
 from llama_recipes.llama_datasets.grammar_dataset.grammar_dataset import get_dataset as get_grammar_dataset
 from llama_recipes.llama_datasets.alpaca_dataset import InstructionDataset as get_alpaca_dataset
 from recipes.quickstart.finetuning.datasets.custom_dataset import get_custom_dataset
 from llama_recipes.llama_datasets.samsum_dataset import get_preprocessed_samsum as get_samsum_dataset
 from llama_recipes.llama_datasets.toxicchat_dataset import get_llamaguard_toxicchat_dataset as get_llamaguard_toxicchat_dataset
+from src.rk_datas.hlm_data_util import get_hlm_with_split as get_hlm
 
 
 
@@ -18,4 +21,5 @@ DATASET_PREPROC = {
     "samsum_dataset": get_samsum_dataset,
     "custom_dataset": get_custom_dataset,
     "llamaguard_toxicchat_dataset": get_llamaguard_toxicchat_dataset,
+    "hlm_chat_datset": get_hlm,
 }

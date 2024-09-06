@@ -5,8 +5,8 @@ import sys
 
 import torch.distributed
 print(sys.path)
-# sys.path.append("/workspace/llama-recipes/src")
-sys.path.append("/data/coding/llama-recipes/src/")
+sys.path.append("/workspace/llama-recipes/src")
+# sys.path.append("/data/coding/llama-recipes/src/")
 from collections import Counter
 import os
 

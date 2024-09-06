@@ -20,6 +20,12 @@ class grammar_dataset:
 
 
 @dataclass
+class hlm_chat_dataset:
+    dataset: str = "hlm_chat_dataset"
+    train_split: str = "datas/hlm/data_train.json"
+    test_split: str = "datas/hlm/data_eval.json"
+
+@dataclass
 class alpaca_dataset:
     dataset: str = "alpaca_dataset"
     train_split: str = "train"
