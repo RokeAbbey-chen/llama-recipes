@@ -42,12 +42,38 @@
                 "--dataset=hlm_chat_dataset",
                 // "--samsum_dataset.trust_remote_code=True",
                 "--use_fp16",
+                "--gradient_accumulation_steps=4",
                 // "--enable_fsdp",
                 "--batch_size_training=1",
                 "--context_length=1024",
-                "--output_dir=output/hlm",
+                "--output_dir=output/hlm/1",
                 // "--max_train_step=1",
-                // "--from_peft_checkpoint=/data/coding/llama-recipes/output/model0"
+                // "--from_peft_checkpoint=/data/coding/llama-recipes/output/hlm/0",
+                "--from_peft_checkpoint=output/hlm/0"
+            ]
+        },
+
+        {
+            "name": "inference-8bit-sgpu",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "./src/llama_recipes/rk_inference.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--use_peft",
+                "--peft_method=lora",
+                // "--quantization=8bit",
+                "--quantization=8bit",
+                "--model_name=meta-llama/Meta-Llama-3.1-8B",
+                // "--dataset=hlm_chat_dataset",
+                // "--samsum_dataset.trust_remote_code=True",
+                "--use_fp16",
+                // "--enable_fsdp",
+                // "--batch_size_training=1",
+                "--context_length=1024",
+                // "--output_dir=output/hlm",
+                // "--max_train_step=1",
+                "--from_peft_checkpoint=./output/hlm"
             ]
         }
     ]
